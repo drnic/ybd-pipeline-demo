@@ -1,6 +1,5 @@
-FROM concourse/concourse-ci
-# https://github.com/concourse/concourse/blob/master/ci/dockerfiles/concourse-ci/Dockerfile
+FROM ubuntu
 
-RUN apt-get update && apt-get install python-pip -y
+RUN apt-get update && apt-get install build-essential python-dev libxml2-dev libxslt-dev python-pip -y
 
 RUN pip install pyyaml sandboxlib jsonschema
