@@ -1,0 +1,35 @@
+---
+jobs:
+- name: build
+  public: true
+  plan:
+  - aggregate:
+    - get: ybd
+      resource: git-ybd
+      trigger: false
+    - get: definitions
+      resource: git-definitions
+      trigger: true
+  - task: build-little-thing
+    config:
+      platform: linux
+      image: {{docker-hub-task-image}}
+      inputs:
+      - {name: ybd}
+      - {name: definitions, path: .}
+      run:
+        path: ./ybd/ybd.py
+        args: [stage1-binutils x86_64]
+
+
+resources:
+- name: git-ybd
+  type: git
+  source:
+    uri: https://github.com/devcurmudgeon/ybd.git
+    branch: master
+- name: git-definitions
+  type: git
+  source:
+    uri: git://git.baserock.org/baserock/baserock/definitions.git
+    branch: master
