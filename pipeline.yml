@@ -2,7 +2,6 @@
 jobs:
 - name: build
   public: true
-  privileged: true
   plan:
   - aggregate:
     - get: pipeline
@@ -15,6 +14,7 @@ jobs:
       resource: git-definitions
       trigger: true
   - task: build-little-thing
+    privileged: true
     config:
       platform: linux
       image: {{docker-hub-task-image}}
