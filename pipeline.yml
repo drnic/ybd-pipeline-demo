@@ -2,6 +2,7 @@
 jobs:
 - name: build
   public: true
+  privileged: true
   plan:
   - aggregate:
     - get: pipeline
