@@ -2,4 +2,4 @@
 
 whoami
 sudo mkdir -p /src
-sudo ./ybd/ybd.py systems/build-system-x86_64.morph x86_64
+sudo ./ybd/ybd.py build-essential x86_64
